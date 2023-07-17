@@ -1,0 +1,3 @@
+[submodule "gems/gosu/1.4.6/_src"]
+	path = gems/gosu/1.4.6/_src
+	url = https://github.com/gosu/gosu.git

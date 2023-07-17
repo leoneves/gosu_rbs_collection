@@ -1,0 +1,65 @@
+module Gosu
+  MsLeft: Integer
+  KbEscape: Integer
+
+  # https://www.rubydoc.info/gems/gosu/Gosu/Window
+  class Window
+    attr_accessor caption : String
+    attr_accessor mouse_x : Float
+    attr_accessor mouse_y : Float
+
+    def initialize: (?::Integer width, ?::Integer height, ?fullscreen: bool) -> void
+
+    def button_down: (Integer id) -> void
+
+    def update: () -> void
+
+    def needs_cursor?: () -> bool
+
+    def needs_redraw?: () -> bool
+
+    def draw: () -> void
+  end
+
+  class Image
+    attr_reader width: Integer
+    attr_reader height: Integer
+
+    def initialize: (source: String, options: {tileable: bool, retro: bool, react: Array[Integer]}) -> Image
+
+    def self.load_tiles: (source: String, tile_width: Integer, tile_height: Integer, ?options: {tileable: bool, retro: bool}) -> Array[Image]
+  end
+
+  # A sample is a short sound that is completely loaded in memory, can be played multiple times at once and offers very flexible playback parameters.
+  # Use samples for everything that’s not music.
+  class Sample
+    def initialize: (String filename) -> Sample
+
+    def play: (volume: Integer, speed: Integer, looping: bool) -> Channel
+  end
+
+  class Song
+  end
+
+  # Channel that represents the sound currently being played
+  class Channel
+    attr_writer pan: Float
+    attr_writer speed: Float
+    attr_writer volume: Float
+
+    #Pauses the sample, to be resumed afterwards.
+    def pause: () -> void
+
+    # Whether the sample is paused.
+    def paused?: () -> bool
+
+    # Whether the sample is playing.
+    def playing?: () -> bool
+
+    # Resumes playback of the sample.
+    def resume: () -> void
+
+    # Stops playback of this sample instance.
+    def stop: () -> void
+  end
+end
