@@ -22,5 +22,5 @@ Run
 $ rbs collection install
 ```
 
-If `rbs_collection.yaml` exists, the installed RBSs are loaded automatically.
+If `rbs_collection.yml` exists, the installed RBSs are loaded automatically.
 You do not need any configuration for `rbs` and `steep` commands.
