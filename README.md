@@ -5,6 +5,12 @@ This is a community-managed collection of RBS files for gems that ship without R
 
 ## Loading RBS from the repository
 
+### First install rbs and steep
+```console
+$ bundle add steep
+$ bundle add rbs
+```
+
 To use it put the content of this rbs_collection.yaml in your project
 
 ```yml
@@ -46,6 +52,8 @@ target :game do
   check 'game' # directory and subdirectories with your code
   check 'lib' # another directory and subdirectories with your code
   check 'init' # another directory and subdirectories with your code
+
+  library 'logger', 'yaml', 'erb' # stdlibs if not auto recognized
 end
 ```
 

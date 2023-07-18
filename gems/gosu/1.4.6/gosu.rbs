@@ -1,3 +1,6 @@
+type point = Integer | Float
+type draw_mode = :default | :additive
+
 module Gosu
   MsLeft: Integer
   KbEscape: Integer
@@ -21,6 +24,10 @@ module Gosu
     def needs_redraw?: () -> bool
 
     def draw: () -> void
+    
+    def close: () -> void
+    
+    def close!: () -> void
   end
 
   class Image
@@ -30,7 +37,9 @@ module Gosu
     def initialize: (String source, ?tileable: bool, ?retro: bool, ?react: Array[Integer]) -> Image
                   | (String source, ?bool tileable) -> Image
 
-    def self.load_tiles: (source: String, tile_width: Integer, tile_height: Integer, ?options: {tileable: bool, retro: bool}) -> Array[Image]
+    def self.load_tiles: (String source, Integer tile_width, Integer tile_height, ?options: {tileable: bool, retro: bool}) -> Array[Image]
+                       
+    def draw: (point x, point y, ?point z, ?point scale_x, ?point scale_y, ?Float color, ?draw_mode mode) -> void
   end
 
   # A sample is a short sound that is completely loaded in memory, can be played multiple times at once and offers very flexible playback parameters.
@@ -38,7 +47,7 @@ module Gosu
   class Sample
     def initialize: (String filename) -> Sample
 
-    def play: (volume: Integer, speed: Integer, looping: bool) -> Channel
+    def play: (?Integer volume, ?Integer speed, ?bool looping) -> Channel
   end
 
   class Song
