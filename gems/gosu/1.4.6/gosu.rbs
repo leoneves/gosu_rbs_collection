@@ -2,6 +2,8 @@ module Gosu
   MsLeft: Integer
   KbEscape: Integer
 
+  def self.milliseconds: () -> Integer
+
   # https://www.rubydoc.info/gems/gosu/Gosu/Window
   class Window
     attr_accessor caption : String
@@ -25,7 +27,8 @@ module Gosu
     attr_reader width: Integer
     attr_reader height: Integer
 
-    def initialize: (source: String, options: {tileable: bool, retro: bool, react: Array[Integer]}) -> Image
+    def initialize: (String source, ?tileable: bool, ?retro: bool, ?react: Array[Integer]) -> Image
+                  | (String source, ?bool tileable) -> Image
 
     def self.load_tiles: (source: String, tile_width: Integer, tile_height: Integer, ?options: {tileable: bool, retro: bool}) -> Array[Image]
   end

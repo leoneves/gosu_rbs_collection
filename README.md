@@ -5,7 +5,7 @@ This is a community-managed collection of RBS files for gems that ship without R
 
 ## Loading RBS from the repository
 
-To use it put the content of this rbs_collection.yml in your project
+To use it put the content of this rbs_collection.yaml in your project
 
 ```yml
 sources:
@@ -14,13 +14,44 @@ sources:
     revision: main
     repo_dir: gems
 
-path: .gem_rbs_collection 
+path: .gem_rbs_collection
+
+gems:
+  # Skip loading rbs gem's RBS.
+  # It's unnecessary if you don't use rbs as a library.
+  - name: rbs
+    ignore: true
+  - name: steep
+    ignore: true
+  - name: json
+    ignore: true
 ```
 
 Run
 ```console
-$ rbs collection install
+$ bundle e rbs collection install
 ```
 
-If `rbs_collection.yml` exists, the installed RBSs are loaded automatically.
-You do not need any configuration for `rbs` and `steep` commands.
+## Run Steep
+Init steep
+```console
+$ bundle e steep init
+```
+
+change file: Steepfile
+```ruby
+target :game do
+  signature 'sig' # directory with your signatures
+
+  check 'game' # directory and subdirectories with your code
+  check 'lib' # another directory and subdirectories with your code
+  check 'init' # another directory and subdirectories with your code
+end
+```
+
+Run
+```console
+bundle e steep check
+```
+
+If you have any syntax error in one file, this file will be ignore in steep check
